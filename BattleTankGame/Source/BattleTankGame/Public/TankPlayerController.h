@@ -20,6 +20,11 @@ public:
 
 	ATank* Tank = nullptr;
 
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
+
+	void AimTowardsCrossHair();
+	
 
 };
