@@ -24,6 +24,8 @@ public:
 	ATank* PlayerTank = nullptr;
 
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+
 
 	
 };

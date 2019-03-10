@@ -37,7 +37,8 @@ void ATankPlayerController::AimTowardsCrossHair()
 	FVector HitLocation = FVector(0, 0, 0); //OUT Parameter // intialised just to check
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("HitLocation : %s"), *HitLocation.ToString());
+		/*UE_LOG(LogTemp, Warning, TEXT("HitLocation : %s"), *HitLocation.ToString());*/
+		GetControlledTank()->AimAt(HitLocation);
 
 		//if it hits the landscape
 		//aim the barrel at the hit spot
@@ -54,7 +55,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	GetViewportSize(ViewportSizeX, ViewPortSizeY);
 	auto ScreenLocation = FVector2D(CrossHairXLocation*ViewportSizeX, CrossHairYLocation*ViewPortSizeY);
 
-	//Deproject the screen position of the crosshair to the world direction
 	FVector LookDirection;
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
@@ -66,6 +66,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	return true;
 }
 
+	//Deproject the screen position of the crosshair to the world direction
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection)const
 {
 	FVector CameraWorldLocation; //not using
