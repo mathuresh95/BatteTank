@@ -19,6 +19,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	// TODO set turrent referene
 
 protected:
 	// Called when the game starts
@@ -29,5 +30,6 @@ protected:
 private:	
 	// Called every frame
 	UStaticMeshComponent * Barrel = nullptr;
+	void MoveBarrelTowards(FVector AimDirection);
 		
 };
