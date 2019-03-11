@@ -6,8 +6,11 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+//forward declaration
+class UTankBarrel; 
+//Parameters for barrel properties and elevate method
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(meta=(BlueprintSpawnableComponent) )
 class BATTLETANKGAME_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -18,7 +21,7 @@ public:
 	void AimAt(FVector HitLocation,float LaunchSpeed);
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 	// TODO set turrent referene
 
 protected:
@@ -29,7 +32,7 @@ protected:
 
 private:	
 	// Called every frame
-	UStaticMeshComponent * Barrel = nullptr;
+	UTankBarrel* Barrel = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
 		
 };

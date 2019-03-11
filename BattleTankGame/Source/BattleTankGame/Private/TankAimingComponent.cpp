@@ -2,6 +2,7 @@
 
 #include "TankAimingComponent.h"
 #include "GameFramework/Actor.h"
+#include "TankBarrel.h"
 #include "Components/StaticMeshComponent.h"
 #include"Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -62,6 +63,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	UE_LOG(LogTemp, Warning, TEXT("THe aim is %s"), *AimAsRotator.ToString());
 	//move barrel thr right amount this frame
 		//give a max elevation speed and fthe frame time
+	Barrel->Elevate(5);
 
 }
 
@@ -73,7 +75,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
