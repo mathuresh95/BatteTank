@@ -43,3 +43,7 @@ void ATank::AimAt(FVector HitLocation)
 	
 }
 
+void ATank::SetTurretReference(UTankTurret* TurretToSet)
+{
+	TankAimingComponent->SetTurretReference(TurretToSet);
+}

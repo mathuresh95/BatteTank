@@ -17,6 +17,6 @@ void UTankBarrel::Elevate(float RelativeSpeed)
 
 
 	auto Time = GetWorld()->DeltaTimeSeconds;
-	UE_LOG(LogTemp,Warning,TEXT("%f Elevate is being called and the raw elevation is %f"),Time,RawNewElevation)
+	//UE_LOG(LogTemp,Warning,TEXT("%f Elevate is being called and the raw elevation is %f"),Time,RawNewElevation)
 	
 }

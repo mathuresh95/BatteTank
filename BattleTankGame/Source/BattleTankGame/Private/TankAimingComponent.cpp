@@ -3,6 +3,7 @@
 #include "TankAimingComponent.h"
 #include "GameFramework/Actor.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "Components/StaticMeshComponent.h"
 #include"Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -11,7 +12,7 @@ UTankAimingComponent::UTankAimingComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true ;  //TICK???
+	PrimaryComponentTick.bCanEverTick = false;  //TICK???
 
 	// ...
 }
@@ -48,6 +49,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		//auto TankName = GetOwner()->GetName();
 		//UE_LOG(LogTemp, Warning, TEXT("%s Aiming at %s"), *TankName, *AimDirection);
 		MoveBarrelTowards(AimDirection);
+		//MoveTurretTowards(AimDirection);
 	}
 	else
 	{
@@ -69,7 +71,17 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	//move barrel thr right amount this frame
 		//give a max elevation speed and fthe frame time
 	Barrel->Elevate(DeltaRotator.Pitch);
+	Turret->RotateTurret(DeltaRotator.GetNormalized().Yaw);
+	
 
+}
+
+void UTankAimingComponent::MoveTurretTowards(FVector AimDirection)
+{
+	auto TurretRotator = Turret->GetForwardVector().Rotation();
+	auto AimAsTRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsTRotator - TurretRotator;
+	
 }
 
 // Called every frame
@@ -83,5 +95,10 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret * TurretToSet)
+{
+	Turret = TurretToSet;
 }
 
