@@ -10,14 +10,6 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Not controlling Tank"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Controlling Tank %s"), *ControlledTank->GetName());
-	}
 
 }
 
