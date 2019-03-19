@@ -20,6 +20,9 @@ public:
 
 	//Max force per tank in new newtons
 	UPROPERTY(EditAnywhere)
-	float TrackMaxDrivingForce = 400000.00f; //tank is 40 ton with 1g acceleration
+	float TrackMaxDrivingForce = 40000000.00f; //tank is 40 ton with 1g acceleration
+
+	/*UPROPERTY(EditAnywhere, Category = Input)
+		UPhysicalMaterial* TankTrackPhysicsMaterial = nullptr;*/
 	
 };
